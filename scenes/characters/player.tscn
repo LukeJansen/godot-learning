@@ -11,8 +11,8 @@ position = Vector2(568, 388)
 script = ExtResource("1_e06j1")
 metadata/_edit_group_ = true
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_0vcfv")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oecfx")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_0vcfv")

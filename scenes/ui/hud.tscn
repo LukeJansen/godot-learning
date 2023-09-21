@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://46gpok0t8spc"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_1j33r"]
+
+[node name="HUD" type="Node"]
+script = ExtResource("1_1j33r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 100.0
+color = Color(0, 0.847765, 0, 1)
