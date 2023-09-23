@@ -10,6 +10,8 @@ size = Vector2(67.701, 1.7983)
 
 [node name="TestLevel" type="Node"]
 
+[node name="HUD" parent="." instance=ExtResource("4_g40b1")]
+
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -53,7 +55,5 @@ JUMP_HEIGHT = 800.0
 
 [node name="Enemy" parent="." instance=ExtResource("3_xdgat")]
 position = Vector2(1778, 896)
-
-[node name="HUD" parent="." instance=ExtResource("4_g40b1")]
 
 [connection signal="healthChange" from="Player" to="HUD" method="_on_player_health_change"]
