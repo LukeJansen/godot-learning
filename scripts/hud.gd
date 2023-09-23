@@ -20,8 +20,6 @@ func _on_player_health_change(health):
 	var previousHealth = currentHealth
 	currentHealth = health
 	
-	print(healthDamage.size)
-	
 	var targetSize = maxSize * (currentHealth / maxHealth)
 	healthDamage.position.x = targetSize
 	healthDamage.size.x = maxSize * ((previousHealth - currentHealth)/maxHealth)

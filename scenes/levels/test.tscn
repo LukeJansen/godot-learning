@@ -54,6 +54,6 @@ SPEED = 500.0
 JUMP_HEIGHT = 800.0
 
 [node name="Enemy" parent="." instance=ExtResource("3_xdgat")]
-position = Vector2(1778, 896)
+position = Vector2(999, 887)
 
 [connection signal="healthChange" from="Player" to="HUD" method="_on_player_health_change"]

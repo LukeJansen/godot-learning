@@ -27,6 +27,7 @@ func _physics_process(delta):
 
 	var playerLocation = player.position
 	var direction = playerLocation.x - position.x
+	direction = 0
 	
 	if direction >= 5:
 		velocity.x = SPEED
@@ -34,6 +35,8 @@ func _physics_process(delta):
 		velocity.x = -SPEED
 	else:
 		velocity.x = 0
+		
+	$Icon.flip_h = velocity.x < 0
 
 	move_and_slide()
 	
