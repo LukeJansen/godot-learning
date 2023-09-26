@@ -27,7 +27,7 @@ func _physics_process(delta):
 
 	var playerLocation = player.position
 	var direction = playerLocation.x - position.x
-	direction = 0
+	#direction = 0
 	
 	if direction >= 5:
 		velocity.x = SPEED

@@ -1,10 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://bex3ue5pcv1bq"]
+[gd_scene load_steps=13 format=3 uid="uid://bex3ue5pcv1bq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e06j1"]
-[ext_resource type="Texture2D" uid="uid://bxro4ncbkakh1" path="res://sprites/test.svg" id="2_jn2f4"]
+[ext_resource type="Texture2D" uid="uid://b3rpyylxhdf7u" path="res://sprites/Idle_Character Stand.png" id="2_hw1ew"]
+[ext_resource type="Texture2D" uid="uid://cat5fqme8i2lr" path="res://sprites/Animation Walk/Running_Character-1.png" id="3_axdnj"]
+[ext_resource type="Texture2D" uid="uid://b0563tiepv25a" path="res://sprites/Animation Jump/Idle_Character-4.png" id="3_pgtjt"]
+[ext_resource type="Texture2D" uid="uid://sq1iheutqaon" path="res://sprites/Animation Walk/Running_Character-2.png" id="4_67gvl"]
+[ext_resource type="Texture2D" uid="uid://dudf52qq8ffmg" path="res://sprites/Animation Jump/Idle_Character-5.png" id="4_i1ncv"]
+[ext_resource type="Texture2D" uid="uid://dr0vdew833rox" path="res://sprites/Animation Jump/Idle_Character-6.png" id="5_x18kg"]
+[ext_resource type="Texture2D" uid="uid://ggu728vtrxqs" path="res://sprites/Animation Jump/Idle_Character-2.png" id="7_420yi"]
+[ext_resource type="Texture2D" uid="uid://c86wu4m7j2uyf" path="res://sprites/Animation Jump/Idle_Character-3.png" id="8_aw6uc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oecfx"]
 size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_224os"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hw1ew")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pgtjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i1ncv")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_420yi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aw6uc")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("5_x18kg")
+}],
+"loop": false,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_axdnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_67gvl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpa6a"]
 size = Vector2(100, 128)
@@ -16,11 +75,15 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oecfx")
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_jn2f4")
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_224os")
+animation = &"jump"
 
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(114, 0)
 shape = SubResource("RectangleShape2D_dpa6a")
+
+[connection signal="animation_finished" from="Icon" to="." method="_on_icon_animation_finished"]
