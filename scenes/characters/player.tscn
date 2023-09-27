@@ -1,23 +1,23 @@
 [gd_scene load_steps=13 format=3 uid="uid://bex3ue5pcv1bq"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_e06j1"]
-[ext_resource type="Texture2D" uid="uid://b3rpyylxhdf7u" path="res://sprites/Idle_Character Stand.png" id="2_hw1ew"]
-[ext_resource type="Texture2D" uid="uid://cat5fqme8i2lr" path="res://sprites/Animation Walk/Running_Character-1.png" id="3_axdnj"]
-[ext_resource type="Texture2D" uid="uid://b0563tiepv25a" path="res://sprites/Animation Jump/Idle_Character-4.png" id="3_pgtjt"]
-[ext_resource type="Texture2D" uid="uid://sq1iheutqaon" path="res://sprites/Animation Walk/Running_Character-2.png" id="4_67gvl"]
-[ext_resource type="Texture2D" uid="uid://dudf52qq8ffmg" path="res://sprites/Animation Jump/Idle_Character-5.png" id="4_i1ncv"]
-[ext_resource type="Texture2D" uid="uid://dr0vdew833rox" path="res://sprites/Animation Jump/Idle_Character-6.png" id="5_x18kg"]
-[ext_resource type="Texture2D" uid="uid://ggu728vtrxqs" path="res://sprites/Animation Jump/Idle_Character-2.png" id="7_420yi"]
-[ext_resource type="Texture2D" uid="uid://c86wu4m7j2uyf" path="res://sprites/Animation Jump/Idle_Character-3.png" id="8_aw6uc"]
+[ext_resource type="Texture2D" uid="uid://b3rpyylxhdf7u" path="res://sprites/character/idle/Idle_Character Stand.png" id="2_lfu0c"]
+[ext_resource type="Texture2D" uid="uid://b0563tiepv25a" path="res://sprites/character/jump/Idle_Character-4.png" id="3_tsoge"]
+[ext_resource type="Texture2D" uid="uid://dudf52qq8ffmg" path="res://sprites/character/jump/Idle_Character-5.png" id="4_7xfxq"]
+[ext_resource type="Texture2D" uid="uid://ggu728vtrxqs" path="res://sprites/character/jump/Idle_Character-2.png" id="5_hq4fv"]
+[ext_resource type="Texture2D" uid="uid://c86wu4m7j2uyf" path="res://sprites/character/jump/Idle_Character-3.png" id="6_j04gv"]
+[ext_resource type="Texture2D" uid="uid://dr0vdew833rox" path="res://sprites/character/jump/Idle_Character-6.png" id="7_844m5"]
+[ext_resource type="Texture2D" uid="uid://cat5fqme8i2lr" path="res://sprites/character/walk/Running_Character-1.png" id="8_ve5a2"]
+[ext_resource type="Texture2D" uid="uid://sq1iheutqaon" path="res://sprites/character/walk/Running_Character-2.png" id="9_itg4w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oecfx"]
-size = Vector2(128, 128)
+size = Vector2(152, 259)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_224os"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_hw1ew")
+"texture": ExtResource("2_lfu0c")
 }],
 "loop": true,
 "name": &"default",
@@ -25,10 +25,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_pgtjt")
+"texture": ExtResource("3_tsoge")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_i1ncv")
+"texture": ExtResource("4_7xfxq")
 }],
 "loop": true,
 "name": &"fall",
@@ -36,10 +36,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_420yi")
+"texture": ExtResource("5_hq4fv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_aw6uc")
+"texture": ExtResource("6_j04gv")
 }],
 "loop": false,
 "name": &"jump",
@@ -47,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 3.0,
-"texture": ExtResource("5_x18kg")
+"texture": ExtResource("7_844m5")
 }],
 "loop": false,
 "name": &"land",
@@ -55,10 +55,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_axdnj")
+"texture": ExtResource("8_ve5a2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_67gvl")
+"texture": ExtResource("9_itg4w")
 }],
 "loop": true,
 "name": &"walk",
@@ -73,12 +73,12 @@ script = ExtResource("1_e06j1")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-25, 3.5)
 shape = SubResource("RectangleShape2D_oecfx")
 
-[node name="Icon" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_224os")
-animation = &"jump"
 
 [node name="AttackArea" type="Area2D" parent="."]
 
@@ -86,4 +86,4 @@ animation = &"jump"
 position = Vector2(114, 0)
 shape = SubResource("RectangleShape2D_dpa6a")
 
-[connection signal="animation_finished" from="Icon" to="." method="_on_icon_animation_finished"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_icon_animation_finished"]

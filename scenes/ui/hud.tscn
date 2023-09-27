@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://46gpok0t8spc"]
+[gd_scene load_steps=4 format=3 uid="uid://duvcutw73av8q"]
 
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_1j33r"]
-[ext_resource type="Texture2D" uid="uid://ymcct0ptn1xt" path="res://sprites/healthBar.png" id="2_yd86n"]
+[ext_resource type="Texture2D" uid="uid://ymcct0ptn1xt" path="res://sprites/ui/healthBar.png" id="2_hhh12"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55t3f"]
 draw_center = false
@@ -28,7 +28,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 510.0
 offset_bottom = 60.0
-texture = ExtResource("2_yd86n")
+texture = ExtResource("2_hhh12")
 expand_mode = 1
 stretch_mode = 1
 

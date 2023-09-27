@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bex3ue5pcv1bq" path="res://scenes/characters/player.tscn" id="1_01msp"]
 [ext_resource type="PackedScene" uid="uid://dqi3toq0txu5i" path="res://scenes/levels/blocks/Platform.tscn" id="2_jjd3s"]
 [ext_resource type="PackedScene" uid="uid://sx2iuqt4j4ck" path="res://scenes/characters/enemy.tscn" id="3_xdgat"]
-[ext_resource type="PackedScene" uid="uid://46gpok0t8spc" path="res://scenes/ui/hud.tscn" id="4_g40b1"]
+[ext_resource type="PackedScene" uid="uid://duvcutw73av8q" path="res://scenes/ui/hud.tscn" id="4_g40b1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vb6v"]
 size = Vector2(67.701, 1.7983)
@@ -49,7 +49,7 @@ offset_right = 1047.0
 offset_bottom = 576.0
 
 [node name="Player" parent="." instance=ExtResource("1_01msp")]
-position = Vector2(131, 918)
+position = Vector2(638, 561)
 SPEED = 500.0
 JUMP_HEIGHT = 800.0
 

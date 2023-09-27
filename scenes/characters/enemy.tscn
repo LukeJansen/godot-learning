@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://sx2iuqt4j4ck"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_fh45b"]
-[ext_resource type="Texture2D" uid="uid://bxro4ncbkakh1" path="res://sprites/test.svg" id="2_s8nwv"]
+[ext_resource type="Texture2D" uid="uid://bxro4ncbkakh1" path="res://sprites/enemy/test.svg" id="2_gptwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paegn"]
 size = Vector2(128, 128)
@@ -15,4 +15,4 @@ shape = SubResource("RectangleShape2D_paegn")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_s8nwv")
+texture = ExtResource("2_gptwv")
