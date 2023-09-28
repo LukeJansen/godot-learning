@@ -14,11 +14,10 @@ func _ready():
 	healthBar = get_node("CanvasLayer/HealthContainer/HealthBar")
 	healthDamage = get_node("CanvasLayer/HealthContainer/HealthBar/HealthDamage")
 	maxSize = healthBar.size.x
+	healthDamage.size.x = 0
 
 ## Process function called every frame
-func _process(delta):
-	if healthDamage.size.x > 0:
-		healthDamage.size.x = lerpf(healthDamage.size.x, 0, 5 * delta)
+#func _process(delta):
 
 ## Signal Functions
 ## Function called from healthChange signal on Player
@@ -31,3 +30,6 @@ func _on_player_health_change(health):
 	healthDamage.size.x = maxSize * ((previousHealth - currentHealth)/maxHealth)
 	
 	healthBar.size.x = targetSize;
+	
+	if currentHealth != maxHealth:
+		$AnimationPlayer.play("HealthBar_TakeDamage")
