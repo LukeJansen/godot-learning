@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwa5lcut271m5"]
+
+[ext_resource type="PackedScene" uid="uid://bex3ue5pcv1bq" path="res://scenes/characters/player.tscn" id="1_0j8pg"]
+[ext_resource type="Texture2D" uid="uid://cv565m6uepk3" path="res://sprites/backdrop/Test/Base.png" id="1_anug7"]
+[ext_resource type="PackedScene" uid="uid://cdj2jggl0o7he" path="res://scenes/characters/npc.tscn" id="3_3hurb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5odo0"]
+size = Vector2(67.701, 1.7983)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(972, 670)
+scale = Vector2(0.81, 0.8)
+texture = ExtResource("1_anug7")
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.615686, 0.427451, 0.717647, 1)
+
+[node name="Floor" type="ColorRect" parent="."]
+offset_top = 1030.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(1, 1, 1, 0)
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+scale = Vector2(28.36, 28.36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+position = Vector2(33.8505, 0.881527)
+shape = SubResource("RectangleShape2D_5odo0")
+
+[node name="Player" parent="." instance=ExtResource("1_0j8pg")]
+position = Vector2(210, 880)
+
+[node name="npc" parent="." instance=ExtResource("3_3hurb")]
+position = Vector2(875, 845)

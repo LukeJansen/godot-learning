@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdj2jggl0o7he"]
+
+[ext_resource type="Texture2D" uid="uid://bnq5d6aeeyoa4" path="res://sprites/NPC/Lumen/Lumen Base.png" id="1_4xjpf"]
+
+[node name="npc" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_4xjpf")
