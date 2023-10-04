@@ -70,13 +70,13 @@ size = Vector2(100, 128)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_e06j1")
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-25, 3.5)
 shape = SubResource("RectangleShape2D_oecfx")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(27, 0)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_224os")
 

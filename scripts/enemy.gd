@@ -1,20 +1,32 @@
 extends CharacterBody2D
 
 ## Constants
-const SPEED = 300.0
+const SPEED = 150.0
+const JUMPVELOCITY = 400
 const HIT_COOLDOWN = 1.5
 
 ## Variables
 var cooldown = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var player
 
-## Private Variables
+@export var player: Node2D
+
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+
+## Private Functions
 ## Ready function called when node is initiated
 func _ready():
-	player = get_node("../Player")
+	call_deferred("_navSetup")
+	#_updateNavAgent()
 
+func _navSetup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+
+	# Now that the navigation map is no longer empty, set the movement target.
+	_updateNavAgent()
+	$NavPathUpdate.start()
 ## Process function called every frame
 func _process(delta):
 	# Reduce cooldown to 0
@@ -29,23 +41,23 @@ func _physics_process(delta):
 	
 			
 func _handleMovement(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
 
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	#	velocity.y = JUMP_VELOCITY
+	if navigation_agent.is_navigation_finished():
+		return
 
-	var playerLocation = player.position
-	var direction = playerLocation.x - position.x
+	var nextPathPosition: Vector2 = navigation_agent.get_next_path_position()
+
+	var newVelocity: Vector2 = nextPathPosition - global_position
+	newVelocity = newVelocity.normalized()
 	
-	if direction >= 5:
-		velocity.x = SPEED
-	elif direction <= -5:
-		velocity.x = -SPEED
-	else:
-		velocity.x = 0
+	if newVelocity.y < 0 and is_on_floor(): 
+		velocity.y = -JUMPVELOCITY
+	elif not is_on_floor():
+		velocity.y += gravity * delta
+	
+	newVelocity = newVelocity * SPEED
 
+	velocity.x = newVelocity.x
 	move_and_slide()
 	
 func _handleCollision():
@@ -58,4 +70,7 @@ func _handleCollision():
 			
 func _handleAnimation():
 	$Icon.flip_h = velocity.x < 0
+	
+func _updateNavAgent():
+	$NavigationAgent2D.set_target_position(player.global_position)
 	

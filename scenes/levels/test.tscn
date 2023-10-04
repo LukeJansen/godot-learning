@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dugtf57qpnd33"]
+[gd_scene load_steps=7 format=3 uid="uid://dugtf57qpnd33"]
 
 [ext_resource type="PackedScene" uid="uid://bex3ue5pcv1bq" path="res://scenes/characters/player.tscn" id="1_01msp"]
 [ext_resource type="PackedScene" uid="uid://dqi3toq0txu5i" path="res://scenes/levels/blocks/Platform.tscn" id="2_jjd3s"]
@@ -7,6 +7,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vb6v"]
 size = Vector2(67.701, 1.7983)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xul4k"]
+vertices = PackedVector2Array(1921, -2, 1700, 750, 1500, 749, 1101, 600, 1101, 550, 1919, 1027, 1701, 799, -1, 1031, 1500, 799, 501, 799, 301, 800, -1, 2, 301, 750, 501, 751, 900, 551, 901, 603)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 5, 6, 1), PackedInt32Array(6, 5, 7, 8), PackedInt32Array(2, 8, 7, 9, 3), PackedInt32Array(10, 9, 7), PackedInt32Array(10, 7, 11, 12), PackedInt32Array(13, 12, 11, 0, 14), PackedInt32Array(15, 3, 9, 13), PackedInt32Array(14, 15, 13), PackedInt32Array(14, 0, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1, 2, 1921, -2, 1919, 1027, -1, 1031), PackedVector2Array(301, 750, 501, 751, 501, 799, 301, 800), PackedVector2Array(900, 551, 1101, 550, 1101, 600, 901, 603), PackedVector2Array(1500, 749, 1500, 799, 1701, 799, 1700, 750)])
 
 [node name="TestLevel" type="Node"]
 
@@ -31,29 +36,33 @@ position = Vector2(33.8505, 0.881527)
 shape = SubResource("RectangleShape2D_1vb6v")
 
 [node name="Platform" parent="." instance=ExtResource("2_jjd3s")]
-offset_left = 522.0
-offset_top = 743.0
-offset_right = 722.0
-offset_bottom = 793.0
+offset_left = 300.0
+offset_top = 750.0
+offset_right = 500.0
+offset_bottom = 800.0
 
 [node name="Platform2" parent="." instance=ExtResource("2_jjd3s")]
-offset_left = 1205.0
-offset_top = 745.0
-offset_right = 1405.0
-offset_bottom = 795.0
+offset_left = 1500.0
+offset_top = 750.0
+offset_right = 1700.0
+offset_bottom = 800.0
 
 [node name="Platform3" parent="." instance=ExtResource("2_jjd3s")]
-offset_left = 847.0
-offset_top = 526.0
-offset_right = 1047.0
-offset_bottom = 576.0
+offset_left = 900.0
+offset_top = 550.0
+offset_right = 1100.0
+offset_bottom = 600.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_xul4k")
 
 [node name="Player" parent="." instance=ExtResource("1_01msp")]
 position = Vector2(638, 561)
 SPEED = 500.0
 JUMP_HEIGHT = 800.0
 
-[node name="Enemy" parent="." instance=ExtResource("3_xdgat")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_xdgat")]
 position = Vector2(999, 887)
+player = NodePath("../Player")
 
 [connection signal="healthChange" from="Player" to="HUD" method="_on_player_health_change"]

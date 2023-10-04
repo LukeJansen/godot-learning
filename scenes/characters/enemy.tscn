@@ -16,3 +16,11 @@ shape = SubResource("RectangleShape2D_paegn")
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_gptwv")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="NavPathUpdate" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="NavPathUpdate" to="." method="_updateNavAgent"]
