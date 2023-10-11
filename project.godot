@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Godot Learning"
-run/main_scene="res://scenes/levels/test.tscn"
+run/main_scene="res://scenes/levels/home_hub.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+
+[autoload]
+
+Utils="*res://scripts/autoloads/utils.gd"
 
 [display]
 

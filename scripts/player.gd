@@ -27,11 +27,11 @@ func _ready():
 	sprite = $Sprite
 	
 	# Resize Attack Hit Box
-	var playerSize = (sprite.sprite_frames.get_frame_texture("default", 0).get_size()) * sprite.scale
-	var attackArea = get_node("AttackArea/CollisionShape2D")
-	attackArea.shape.size.y = playerSize.y
-	attackArea.shape.size.x = attackRange
-	attackArea.position.x = (playerSize.x / 2) + (attackArea.shape.size.x / 2) + 1
+#	var playerSize = (sprite.sprite_frames.get_frame_texture("default", 0).get_size()) * sprite.scale
+#	var attackArea = get_node("AttackArea/CollisionShape2D")
+#	attackArea.shape.size.y = playerSize.y
+#	attackArea.shape.size.x = attackRange
+#	attackArea.position.x = (playerSize.x / 2) + (attackArea.shape.size.x / 2) + 1
 
 ## Process function called every frame
 func _process(_delta):
@@ -97,3 +97,5 @@ func _on_icon_animation_finished():
 func takeDamage(damage):
 	health = clamp((health - damage), 0, health)
 	healthChange.emit(health)
+	if health <= 0:
+		Utils.loadScene(get_node("../"), "home_hub")
