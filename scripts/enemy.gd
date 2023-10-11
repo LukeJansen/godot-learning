@@ -65,12 +65,13 @@ func _handleCollision():
 		var collider = get_slide_collision(i).get_collider()
 		#print("I collided with ", collision.get_collider().name)
 		if collider.name == "Player" and cooldown <= 0:
-			collider.call("takeDamage", 1)
+			collider.call("takeDamage", 10)
 			cooldown = HIT_COOLDOWN
 			
 func _handleAnimation():
 	$Icon.flip_h = velocity.x < 0
 	
 func _updateNavAgent():
-	$NavigationAgent2D.set_target_position(player.global_position)
+	if is_instance_valid(player):
+		$NavigationAgent2D.set_target_position(player.global_position)
 	

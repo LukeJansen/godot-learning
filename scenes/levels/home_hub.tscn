@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwa5lcut271m5"]
+[gd_scene load_steps=7 format=3 uid="uid://bwa5lcut271m5"]
 
 [ext_resource type="PackedScene" uid="uid://bex3ue5pcv1bq" path="res://scenes/characters/player.tscn" id="1_0j8pg"]
 [ext_resource type="Texture2D" uid="uid://cv565m6uepk3" path="res://sprites/backdrop/Test/Base.png" id="1_anug7"]
 [ext_resource type="PackedScene" uid="uid://cdj2jggl0o7he" path="res://scenes/characters/npc.tscn" id="3_3hurb"]
+[ext_resource type="Script" path="res://scenes/levels/Test.gd" id="4_o5wr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5odo0"]
 size = Vector2(67.701, 1.7983)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2a3o"]
+size = Vector2(369.5, 345)
 
 [node name="Node2D" type="Node2D"]
 
@@ -39,3 +43,12 @@ position = Vector2(210, 880)
 
 [node name="npc" parent="." instance=ExtResource("3_3hurb")]
 position = Vector2(875, 845)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("4_o5wr2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1242, 858)
+shape = SubResource("RectangleShape2D_k2a3o")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

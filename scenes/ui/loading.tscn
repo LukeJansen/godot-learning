@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxx7al7m4jdys"]
+
+[ext_resource type="Script" path="res://scripts/loading.gd" id="1_rswn5"]
+
+[sub_resource type="Animation" id="Animation_xr382"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_g7ayn"]
+resource_name = "fadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pfr30"]
+resource_name = "fadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mg3ws"]
+_data = {
+"RESET": SubResource("Animation_xr382"),
+"fadeIn": SubResource("Animation_g7ayn"),
+"fadeOut": SubResource("Animation_pfr30")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f32ff"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ll62"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xt2km"]
+bg_color = Color(0, 0.713726, 0.435294, 1)
+
+[sub_resource type="Theme" id="Theme_rxruc"]
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 5
+ProgressBar/font_sizes/font_size = 40
+ProgressBar/styles/background = SubResource("StyleBoxFlat_7ll62")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_xt2km")
+
+[node name="Loading" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_rswn5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mg3ws")
+}
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f32ff")
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.5
+offset_top = -56.5
+offset_right = 575.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rxruc")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
